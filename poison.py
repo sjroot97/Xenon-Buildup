@@ -14,15 +14,13 @@ Sigma_F = sigma_F*N
 
 sigma_Xe = 2.6e-18
 
-m_dotHe = 0 #kg/hr
-mtc = 1e15  # accXe/kgHe
 
 #Define Functions
 def dI_dt(I):
     return gamma['I']*Sigma_F*phi-lamda['I']*I
 
 def dXe_dt(I,Xe):
-    return lamda['I']*I+gamma['Xe']*Sigma_F*phi-lamda['Xe']*Xe-Xe*sigma_Xe*phi-mtc*m_dotHe/3600
+    return lamda['I']*I+gamma['Xe']*Sigma_F*phi-lamda['Xe']*Xe-Xe*sigma_Xe*phi
 
 dt=1 #sec
 
@@ -34,7 +32,7 @@ time = np.arange(begin,end*3600+1) #sec
 for t in time:
     if t == 200*3600:
         phi = 0
-        m_dotHe  = 10
+        
     if t==0: #Iniitial Conditions for ODEs
         I = [0]
         Xe= [0]
